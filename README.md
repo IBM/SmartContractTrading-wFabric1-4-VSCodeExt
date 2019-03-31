@@ -15,7 +15,7 @@ When you have completed this code pattern, you will understand how to use the IB
 
 # Architecture flow
 <p align="center">
-  <img src="docs/doc-images/arch-diagram.png">
+  <img src="doc-images/arch-diagram.png">
 </p>
 
 1. Setup and launch the VSCode Platform
