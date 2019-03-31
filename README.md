@@ -3,7 +3,8 @@
 
 >SmartContract Trading using VSCode Blockchain Extension (Fabric 1.4)
 
-Welcome to Part 2 of the Hyperledger Composer Composite Pattern. This is a continuation of [Create a Blockchain Network on IBP V2.0](https://github.com/IBM/Create-BlockchainNetwork-IBPV20).  You should be already familar with setting up a network in VSCode or IBP V2.0 from the previous pattern in this series. This pattern focuses on how you create a smart contract. The Smart Contract is at the heart of a blockchain network. It enables a participant to change the state of an asset.   In this use case, the assets are `Products` and `ProductListings` and the partcipant will be able to execute the following transactions or smart contracts: `AddProduct`. You will learn how to add multiple participants and add access control to your blockchain application. To do that - you will create an interactive, distributed, product auction demo network. You will list assets for sale (setting a reserve price) and watch as assets that have met their reserve price are automatically transferred to the highest bidder at the end of the auction. Also each participant will have different level of access permissions depending on the Access Control Rules (ACL) in `permissions.acl` file. Access Control Lists (ACL) are the settings for sharing and privacy.
+Welcome to Part 2 of the Hyperledger Composer Composite Pattern. This is a continuation of [Create a Blockchain Network on IBP V2.0](https://github.com/IBM/Create-BlockchainNetwork-IBPV20).  You should be already familar with setting up a network in VSCode or IBP V2.0 from the previous pattern in this series. This pattern focuses on how you create a smart contract. The Smart Contract is at the heart of a blockchain network. It enables a participant to change the state of an asset.   In this use case, the assets are `Commodities` and `Traders` and the partcipant will be able to execute the following transactions or smart contracts: `Trade` or `CheckQuantity`. IBM Blockchain Platform Extension for VSCode makes it very easy to create and test out smart contracts.  Let's give it a try.
+
 
 
 When you have completed this code pattern, you will understand how to use the VSCode Blockchain Extension to:
@@ -14,11 +15,13 @@ When you have completed this code pattern, you will understand how to use the VS
 * Test the smart contracts
 
 # Architecture flow
-***UPDATE***
 
-#<p align="center">
- # <img src="docs/doc-images/archdiagram.png">
-#</p>
+
+<p align="center">
+  <img src="docs/doc-images/archdiagram.png">
+</p>
+
+***UPDATE***
 
 1. Setup and launch VSCode Platform. 
 2. Developa a smart contract using Node.js
@@ -67,8 +70,14 @@ Ensure you have the following installed
 - Click **Install**
 - Restart Visual Studio Code to complete teh installation of the extension
 
+## 2. Clone the repo
 
-## 2. Edit Package JSON File
+Clone this repository in a folder of your choice
+
+                `git clone https://github.com/IBM/SmartContractTrading-wFabric1-4-VSCodeExt.git`
+
+## 3. Edit Package JSON File
+
 
 The first thing you need to do is edit the `Package.json` file. In this file - you will need to state the name of the smart contract. In this instance we will call it `auction`.
 
@@ -97,14 +106,15 @@ The next function `CreateAssetsandMembers` which will actually write data to the
 In this function, we are creating 2 instances of the Commodity asset (Gold & WonderDrug) and 2 instances of a Trader participant (SI1 and RT2). 
 Note the example of creating an asset:
 
-					`var commKey = 'WONDERDRUG';
-					        let commodity = { 
-					              docType: 'commodity', 
-					              description: 'Wonder Drug',
-					              mainExchange: 'Geneva',
-					              quantity: 300,
-					              owner: 'RT2'
-					        };`
+
+					`var commKey = 'GOLD';
+                     var commodity = { 
+                       docType: 'commodity', 
+                       description: 'Yellow Bars',
+                       mainExchange: 'London',
+                       quantity: 100,
+                       owner: 'SI1'
+                    };`
 
 The data being written to the ledger are created as JSON objects that are then 'stringified' with this command:
 
@@ -131,7 +141,7 @@ Now that you smart contract is written - we need to add it in the IBM Blockchain
 
 **SHOW GRAPHIC**  
 <p align="center">
-  <img src="docs/doc-images/vs-code-options.png">
+  <img src="doc-images/vs-code-options.png">
 </p>
 
 
