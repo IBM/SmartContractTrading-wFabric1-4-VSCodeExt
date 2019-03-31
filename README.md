@@ -6,6 +6,7 @@
 Welcome to Part 2 of the Hyperledger Composer Composite Pattern. This is a continuation of [Create a Blockchain Network on IBP V2.0](https://github.com/IBM/Create-BlockchainNetwork-IBPV20).  You should be already familar with setting up a network in VSCode or IBP V2.0 from the previous pattern in this series. This pattern focuses on how you create a smart contract. The Smart Contract is at the heart of a blockchain network. It enables a participant to change the state of an asset.   In this use case, the assets are `Commodities` and `Traders` and the partcipant will be able to execute the following transactions or smart contracts: `Trade` or `CheckQuantity`. IBM Blockchain Platform Extension for VSCode makes it very easy to create and test out smart contracts.  Let's give it a try.
 
 
+
 When you have completed this code pattern, you will understand how to use the VSCode Blockchain Extension to:
 
 * Create a smart contract 
@@ -15,9 +16,12 @@ When you have completed this code pattern, you will understand how to use the VS
 
 # Architecture flow
 
+
 <p align="center">
   <img src="docs/doc-images/archdiagram.png">
 </p>
+
+***UPDATE***
 
 1. Setup and launch VSCode Platform. 
 2. Developa a smart contract using Node.js
@@ -66,7 +70,6 @@ Ensure you have the following installed
 - Click **Install**
 - Restart Visual Studio Code to complete teh installation of the extension
 
-
 ## 2. Clone the repo
 
 Clone this repository in a folder of your choice
@@ -74,6 +77,7 @@ Clone this repository in a folder of your choice
                 `git clone https://github.com/IBM/SmartContractTrading-wFabric1-4-VSCodeExt.git`
 
 ## 3. Edit Package JSON File
+
 
 The first thing you need to do is edit the `Package.json` file. In this file - you will need to state the name of the smart contract. In this instance we will call it `auction`.
 
@@ -101,6 +105,7 @@ The next function `CreateAssetsandMembers` which will actually write data to the
 
 In this function, we are creating 2 instances of the Commodity asset (Gold & WonderDrug) and 2 instances of a Trader participant (SI1 and RT2). 
 Note the example of creating an asset:
+
 
 					`var commKey = 'GOLD';
                      var commodity = { 
