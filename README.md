@@ -1,32 +1,27 @@
 # SmartContractTrading-wFabric1-4-VSCodeExt
 
 
->SmartContract Trading using VSCode Blockchain Extension (Fabric 1.4)
+>SmartContract Trading using IBM Blockchain Platform Extension for VSCode (supports Fabric 1.4)
 
-Welcome to Part 2 of the Hyperledger Composer Composite Pattern. This is a continuation of [Create a Blockchain Network on IBP V2.0](https://github.com/IBM/Create-BlockchainNetwork-IBPV20).  You should be already familar with setting up a network in VSCode or IBP V2.0 from the previous pattern in this series. This pattern focuses on how you create a smart contract. The Smart Contract is at the heart of a blockchain network. It enables a participant to change the state of an asset.   In this use case, the assets are `Commodities` and `Traders` and the partcipant will be able to execute the following transactions or smart contracts: `Trade` or `CheckQuantity`. IBM Blockchain Platform Extension for VSCode makes it very easy to create and test out smart contracts.  Let's give it a try.
+Welcome to Part 2 of the Hyperledger Composer Composite Pattern. This is a continuation of [Create a Blockchain Network on IBP V2.0](https://github.com/IBM/Create-BlockchainNetwork-IBPV20).  You should be already familar with setting up a network in VSCode or IBP V2.0 from the previous pattern in this series. This pattern focuses on how you create a smart contract. The Smart Contract is at the heart of a blockchain network. It enables a participant to change the state of an asset.   In this use case, the assets are `Commodities` and `Traders` and the participant is able to execute the following transactions or smart contracts: `Trade` or `CheckQuantity`. IBM Blockchain Platform Extension for VSCode makes it very easy to create and test out smart contracts.  Let's give it a try.
 
 
-
-When you have completed this code pattern, you will understand how to use the VSCode Blockchain Extension to:
+When you have completed this code pattern, you will understand how to use the IBM Blockchain Platform Extension for VSCode to:
 
 * Create a smart contract 
 * Package the smart contract
-* Install and instantiate smart contract package
+* Install and instantiate a smart contract package
 * Test the smart contracts
 
 # Architecture flow
-
-
 <p align="center">
   <img src="docs/doc-images/archdiagram.png">
 </p>
 
-***UPDATE***
-
-1. Setup and launch VSCode Platform. 
-2. Developa a smart contract using Node.js
+1. Setup and launch the VSCode Platform
+2. Develop a smart contract using Node.js
 3. Start a local instance of a Fabric Network within the VS Code Platform
-4. Install and instantiate the smart contracts. 
+4. Install and instantiate the smart contract 
 5. Test out the smart contract transactions 
 
 
@@ -52,7 +47,7 @@ Follow these steps to set up and run this code pattern. The steps are described 
 
 1. [Install the prerequisites](#1-install-the-prerequisites)
 2. [Clone the repo](#2-clone-the-repo)
-3. [Edit Package json File](#3-package-json-file)
+3. [Edit package json file](#3-edit-package-json-file)
 4. [Create the smart contract](#4-create-the-smart-contract)
 5. [Package the smart contract](#5-package-the-smart-contract)
 6. [Start the local network](#6-start-the-local-network)
@@ -70,6 +65,27 @@ Ensure you have the following installed
 - Click **Install**
 - Restart Visual Studio Code to complete teh installation of the extension
 
+If you are using Windows, you must also ensure the following:
+
+* Your version of Windows supports Hyper-V and Docker:
+* Windows 10 Enterprise, Pro, or Education with 1607 Anniversary Update or later
+* Docker for Windows is configured to use Linux containers (this is the default)
+* You have installed the C++ Build Tools for Windows from windows-build-tools
+* You have installed OpenSSL v1.0.2 from Win32 OpenSSL
+* Install the normal version, not the version marked as “light”
+* Install the Win32 version into C:\OpenSSL-Win32 on 32-bit systems
+* Install the Win64 version into C:\OpenSSL-Win64 on 64-bit systems
+
+You can check your installed versions by running the following commands from a terminal:
+
+* node --version
+* npm --version
+* yo --version
+* docker --version
+* docker-compose --version
+
+Once you have installed Visual Studio Code, the first thing you need to do is to install the IBM Blockchain Platform VSCode extension. To do this, you need to install the latest version of VSCode; to see if you have the latest VSCode extension, go to Code > Check for Updates. If VSCode crashes at this point, it likely means you don’t have the latest version. Update your VSCode, and once you’re done, click on extensions in the sidebar on the left side of your screen. At the top, search the extension marketplace for IBM Blockchain Platform. Click Install and then click reload. Now you should be all set to use the extension!
+
 ## 2. Clone the repo
 
 Clone this repository in a folder of your choice
@@ -77,7 +93,6 @@ Clone this repository in a folder of your choice
                 `git clone https://github.com/IBM/SmartContractTrading-wFabric1-4-VSCodeExt.git`
 
 ## 3. Edit Package JSON File
-
 
 The first thing you need to do is edit the `Package.json` file. In this file - you will need to state the name of the smart contract. In this instance we will call it `auction`.
 
@@ -87,9 +102,7 @@ The first thing you need to do is edit the `Package.json` file. In this file - y
 
 You can also supply a description.
 
-
-
-## 3. Create the Smart Contract
+## 4. Create the Smart Contract
 
 Recall from the intro that the Smart Contract defines the different state of an object or asset.  Additionally, it governs the processes or transactions that can occur that moves the object between different states.  Developers use smart contracts to define the key business processes and data the can be shared across organizations within a blockchain network.
 
@@ -106,8 +119,7 @@ The next function `CreateAssetsandMembers` which will actually write data to the
 In this function, we are creating 2 instances of the Commodity asset (Gold & WonderDrug) and 2 instances of a Trader participant (SI1 and RT2). 
 Note the example of creating an asset:
 
-
-					`var commKey = 'GOLD';
+          					`var commKey = 'GOLD';
                      var commodity = { 
                        docType: 'commodity', 
                        description: 'Yellow Bars',
@@ -118,34 +130,35 @@ Note the example of creating an asset:
 
 The data being written to the ledger are created as JSON objects that are then 'stringified' with this command:
 
-                     `await ctx.stub.putState(commKey, JSON.stringify(commodity));`
+                    `await ctx.stub.putState(commKey, JSON.stringify(commodity));`
 
 
-We will add a `read` function to query or read from the network.  We will use the getState() method from the smart contract context to read the data and then pass in the output into a JSON object.
+We will add a `queryQuantity` function to query or read from the network.  We will use the getState() method from the smart contract context to read the data and then pass in the output into a JSON object.  This transaction function will take the Hyperledger Fabric context and one argument, `commKey`, which identifies which commodity to process the transaction against.
 
-                       `let commodityBytes = await ctx.stub.getState(commKey);`
+                    `let commodityBytes = await ctx.stub.getState(commKey);`
 
 The last thing we will do is execute a trade where a new owner gets assigned a new commodity.  The logic requires you first read the data from the ledger, validate it and then a new block to the ledger assigning a new owner to the commodity.  Assuming everything is valid, we will make the update using the `putState` method.
 
-                       `await ctx.stub.putState(commKey, JSON.stringify(commodity));`
+                     `await ctx.stub.putState(commKey, JSON.stringify(commodity));`
 
 
 Voila' You have completed writing the smart contract.
 
+## 5. Package the smart contract
 
-##4. Package the smart contract
-
-Now that you smart contract is written - we need to add it in the IBM Blockchain Platform VSCode Extension
+Now that you smart contract is written - we need to add it into VSCode using the IBM Blockchain Platform VSCode Extension
 
 * If you didn't create the code inside of VSCode - you will need to add the `contract` folder into the tool.  You will see this:
-
-**SHOW GRAPHIC**  
+  
 <p align="center">
-  <img src="doc-images/vs-code-options.png">
+  <img src="doc-images/file-explorer.png">
 </p>
 
+**Note** - it is important - if you get an error about not recognizing the programming language, ensure you **only** loaded the `contract` directory and not your whole `github` directory.
 
-* Click the `IBM Blockchain Platform` extension button (it looks like a square) on the left. This will show the packaged contracts on top and the blockchain connections on the bottom.
+
+* Click the `IBM Blockchain Platform` extension button (it looks like a square all the way on the bottom of the left sidebar). This will show the packaged contracts on top and the blockchain connections on the bottom.
+
 
 <p align="center">
   <img src="doc-images/package.png">
@@ -159,11 +172,13 @@ Now that you smart contract is written - we need to add it in the IBM Blockchain
 </p>
 
 
-##5. Start the Local Network
+##6. Start the Local Network
 
-Now you are ready to deploy to the local fabric network. You first need to make sure your network is running.
+Now you are ready to deploy to the local fabric network. Before you can install the smart contract on the network, you need to first connect to a network.  The network that comes with the VSCode extension is perfect for development — it offers the minimal resources to develop and test your contract. The following Docker containers are started on your local machine, each with a different role in the network: `Orderer, Certificate Authority, CouchDB, and Peer`.
 
-* Click on the words `local_fabric` with the unfilled circle next to it. That is how you can tell if you network is up or not - once it is running - the circle will be filled in.  Click on the 3 dots and select `Start Fabric Runtime`. 
+* Click on the extension, you should see LOCAL FABRIC OPS on the left side of the editor. To the right of LOCAL FABRIC OPS you should see a three-dot symbol. Click that, and then click on Start Fabric Runtime.
+
+Your extension will now provision those Docker containers that will act as nodes in your network. Once the provisioning is finished, you should see a Smart Contracts section under LOCAL FABRIC OPS.
 
 
 <p align="center">
@@ -174,13 +189,15 @@ Now you are ready to deploy to the local fabric network. You first need to make 
 When you have the network up and running - you will see this in VSCode:
 
 <p align="center">
-  <img src="doc-images/metwork-running.png">
+  <img src="doc-images/network-running.png">
 </p>
 
 
-##6. Install and instantiate the smart contract
+## 7. Install and instantiate the smart contract
 
 Now that the Fabric network is running, we need to install our smart contract onto the peer.  
+
+### Install
 
 * In the `Local Fabric Ops` section near the bottom, click on Install.  You will see a pop-up similar to the graphic below.  Select `peer0.org1.example.com` 
 
@@ -192,10 +209,22 @@ Now that the Fabric network is running, we need to install our smart contract on
 * Then select the packaged contract: `auction@0.0.1 Packaged`  **Note** The 0.0.1 comes from your package.json line:  `"version": "0.0.1"`
 
 
-After the install is complete, you should get a message `Successfuly installed on peer peer0.org1.example.com`.  You should also see that the contract is listed under `Installed` under `Local Fabric Ops`.
+After the install is complete, you should get a message `Successfully installed on peer peer0.org1.example.com`.  You should also see that the contract is listed under `Installed` under `Local Fabric Ops`.
 
+
+### Instantiate
 
 * And then instantiate it on the channel by clicking on `+ Instantiate` and choose `mychannel`.  Select `auction@0.0.1 Installed`.
+
+* Under **Smart Contracts** you will see a section that says **Instantiated**. Click on `+ Instantiate`.
+
+* The extension will then ask you which channel to instantiate the smart contract on – choose `mychannel`.
+
+* The extension will then ask you which contract and version to instantiate — choose `auction@0.0.1`.
+
+* The extension will then ask you which function to call — type in `instantiate`
+
+* Next, it will ask you for the arguments. There are none, so just hit enter.
 
 <p align="center">
   <img src="doc-images/instantiate.png">
@@ -204,7 +233,7 @@ After the install is complete, you should get a message `Successfuly installed o
 
 You should get the message `Successfully instantiated smart contract` and see `auction@0.0.1` under `Instantiated` under `Local Fabric Ops`.
 
-##7. Test the transactions
+## 8. Test the transactions
 
 You can test out the transactions right in the VSCode platform.  If you click on `Admin@org1.example.com`, then click on `mychannel`, then click on `auction@0.0.1`  - expand it to show the following:
 
@@ -212,11 +241,11 @@ You can test out the transactions right in the VSCode platform.  If you click on
   <img src="doc-images/transactions.png">
 </p>
 
-Notice that all of the transactions that you created in the auction.js file are listed.  If you right-hand click on the `CreateAssetsandMembers` transaction and then hit return (don't enter any options), you should get a response that the transactions was successfully submitted. 
+Notice that all of the transactions that you created in the auction.js file are listed.  If you right-hand click on the `CreateAssetsandMembers` transaction and then select `submit transaction`, a pop-up will come up. Hit return (don't enter any options), you should get a response that the transaction was successfully submitted. 
 
 At this point, you will have created the 2 instances of commodities and 2 instances of traders.
 
-Now let's submit the `checkQuantity` transaction.  Enter `GOLD` as a parameter. You should see the following response in your output window:
+Now let's submit the `checkQuantity` transaction.  Similiarly, righ-hand click on the the `checkQuantity` tansaction. This time you do have to enter an option. Enter `GOLD` as a parameter. You should see the following response in your output window:
 
 <p align="center">
   <img src="doc-images/output-quantity-transaction.png">
@@ -231,7 +260,7 @@ Now let's submit the `trade` transaction.  Enter `GOLD`, `RT2` as parameters. Yo
 ## Extending the code pattern
 You learned how to create, package, install, instantiate and invoke a smart contract using the VSCode Platform that supports IBM Blockchain Platform.  If you want to extend this pattern:
 
-* You can leverage a network instantiated using the IBM Blockchain Platform V2.0 Service along with [IBM Cloud Kubernetes Service](https://www.ibm.com/cloud/container-service) on [IBM Cloud](https://www.ibm.com/cloud
+* You can leverage a network instantiated using the [IBM Blockchain Platform V2.0 Service](https://console.bluemix.net/catalog/services/blockchain)along with [IBM Cloud Kubernetes Service](https://www.ibm.com/cloud/container-service) on [IBM Cloud](https://www.ibm.com/cloud
 ). 
 
 * You can write a standalone application that executes the transactions.  You can learn more about these extensions in the third pattern of this series. [Emit events from Blockchain Platform 2.0](https://developer.ibm.com/patterns/implementing-blockchain-events-using-ibp-vscode-extension/)
