@@ -15,7 +15,7 @@ When you have completed this code pattern, you will understand how to use the IB
 
 # Architecture flow
 <p align="center">
-  <img src="docs/doc-images/archdiagram.png">
+  <img src="docs/doc-images/arch-diagram.png">
 </p>
 
 1. Setup and launch the VSCode Platform
@@ -97,7 +97,7 @@ Clone this repository in a folder of your choice
 The first thing you need to do is edit the `Package.json` file. In this file - you will need to state the name of the smart contract. In this instance we will call it `auction`.
 
 <p align="center">
-  <img src="doc-images/xxxxx.png">
+  <img src="doc-images/package-json.png">
 </p>
 
 You can also supply a description.
@@ -146,7 +146,7 @@ Voila' You have completed writing the smart contract.
 
 ## 5. Package the smart contract
 
-Now that you smart contract is written - we need to add it into VSCode using the IBM Blockchain Platform VSCode Extension
+Now that your smart contract is written - we need to add it into VSCode using the IBM Blockchain Platform VSCode Extension
 
 * If you didn't create the code inside of VSCode - you will need to add the `contract` folder into the tool.  You will see this:
   
@@ -172,7 +172,7 @@ Now that you smart contract is written - we need to add it into VSCode using the
 </p>
 
 
-##6. Start the Local Network
+## 6. Start the Local Network
 
 Now you are ready to deploy to the local fabric network. Before you can install the smart contract on the network, you need to first connect to a network.  The network that comes with the VSCode extension is perfect for development — it offers the minimal resources to develop and test your contract. The following Docker containers are started on your local machine, each with a different role in the network: `Orderer, Certificate Authority, CouchDB, and Peer`.
 
