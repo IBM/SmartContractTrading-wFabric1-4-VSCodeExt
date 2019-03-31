@@ -14,7 +14,6 @@ When you have completed this code pattern, you will understand how to use the IB
 * Test the smart contracts
 
 # Architecture flow
-
 <p align="center">
   <img src="docs/doc-images/archdiagram.png">
 </p>
@@ -87,7 +86,6 @@ You can check your installed versions by running the following commands from a t
 
 Once you have installed Visual Studio Code, the first thing you need to do is to install the IBM Blockchain Platform VSCode extension. To do this, you need to install the latest version of VSCode; to see if you have the latest VSCode extension, go to Code > Check for Updates. If VSCode crashes at this point, it likely means you don’t have the latest version. Update your VSCode, and once you’re done, click on extensions in the sidebar on the left side of your screen. At the top, search the extension marketplace for IBM Blockchain Platform. Click Install and then click reload. Now you should be all set to use the extension!
 
-
 ## 2. Clone the repo
 
 Clone this repository in a folder of your choice
@@ -103,8 +101,6 @@ The first thing you need to do is edit the `Package.json` file. In this file - y
 </p>
 
 You can also supply a description.
-
-
 
 ## 4. Create the Smart Contract
 
@@ -123,7 +119,7 @@ The next function `CreateAssetsandMembers` which will actually write data to the
 In this function, we are creating 2 instances of the Commodity asset (Gold & WonderDrug) and 2 instances of a Trader participant (SI1 and RT2). 
 Note the example of creating an asset:
 
-					`var commKey = 'GOLD';
+          					`var commKey = 'GOLD';
                      var commodity = { 
                        docType: 'commodity', 
                        description: 'Yellow Bars',
@@ -148,7 +144,6 @@ The last thing we will do is execute a trade where a new owner gets assigned a n
 
 Voila' You have completed writing the smart contract.
 
-
 ## 5. Package the smart contract
 
 Now that you smart contract is written - we need to add it into VSCode using the IBM Blockchain Platform VSCode Extension
@@ -163,6 +158,7 @@ Now that you smart contract is written - we need to add it into VSCode using the
 
 
 * Click the `IBM Blockchain Platform` extension button (it looks like a square all the way on the bottom of the left sidebar). This will show the packaged contracts on top and the blockchain connections on the bottom.
+
 
 <p align="center">
   <img src="doc-images/package.png">
@@ -237,7 +233,7 @@ After the install is complete, you should get a message `Successfully installed 
 
 You should get the message `Successfully instantiated smart contract` and see `auction@0.0.1` under `Instantiated` under `Local Fabric Ops`.
 
-##8. Test the transactions
+## 8. Test the transactions
 
 You can test out the transactions right in the VSCode platform.  If you click on `Admin@org1.example.com`, then click on `mychannel`, then click on `auction@0.0.1`  - expand it to show the following:
 
