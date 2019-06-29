@@ -3,7 +3,7 @@
 
 >SmartContract Trading using IBM Blockchain Platform Extension for VSCode (supports Fabric 1.4)
 
-Welcome to Part 2 of the Hyperledger Composer Composite Pattern. This is a continuation of [Create a Blockchain Network on IBP V2.0](https://github.com/IBM/Create-BlockchainNetwork-IBPV20).  You should be already familar with setting up a network in VSCode or IBP V2.0 from the previous pattern in this series. This pattern focuses on how you create a smart contract. The Smart Contract is at the heart of a blockchain network. It enables a participant to change the state of an asset. In this use case, the assets are `Commodities` and `Traders` and the participant is able to execute the following transactions or smart contracts: `Trade` or `CheckQuantity`. IBM Blockchain Platform Extension for VSCode makes it very easy to create and test out smart contracts.  Let's give it a try.
+Welcome to Part 2 of the Hyperledger Composer Composite Pattern. This is a continuation of [Create a Blockchain Network on IBP V2.0](https://github.com/IBM/Create-BlockchainNetwork-IBPV20).  You should be already familiar with setting up a network in VSCode or IBP V2.0 from the previous pattern in this series. This pattern focuses on how you create a smart contract. The Smart Contract is at the heart of a blockchain network. It enables a participant to change the state of an asset. In this use case, the assets are `Commodities` and `Traders` and the participant is able to execute the following transactions or smart contracts: `Trade` or `CheckQuantity`. IBM Blockchain Platform Extension for VSCode makes it very easy to create and test out smart contracts.  Let's give it a try.
 
 
 When you have completed this code pattern, you will understand how to use the IBM Blockchain Platform Extension for VSCode to:
@@ -106,13 +106,13 @@ You can also supply a description.
 
 Recall from the intro that the Smart Contract defines the different state of an object or asset.  Additionally, it governs the processes or transactions that can occur that moves the object between different states.  Developers use smart contracts to define the key business processes and data that can be shared across organizations within a blockchain network.
 
-The next task is to edit the provided smart contract and code up the X transactions. A copy of this pattern's smart contract is contained in `\contract\lib\auction.js`.  Take a look at it in more detail.
+The next task is to edit the provided smart contract and code up the transactions. A copy of this pattern's smart contract is contained in `\contract\lib\auction.js`.  Take a look at it in more detail.
 
 You will see that at the top of it, the requirement for the fabric contract API package and we are extending the contract class:
 
                      `class Auction extends Contract {`
 
-The first function that is called when the smart contract is instantiated is called `Instantiate`.  Sometimes you will see developers call it `init`.
+The first function that is called when the smart contract is instantiated is called `instantiate`.  Sometimes you will see developers call it `init`.
 
 The next function `CreateAssetsandMembers` which will actually write data to the fabric network.
 
@@ -133,7 +133,7 @@ The data being written to the ledger are created as JSON objects that are then '
                     `await ctx.stub.putState(commKey, JSON.stringify(commodity));`
 
 
-We will add a `queryQuantity` function to query or read from the network.  We will use the `getState()` method from the smart contract context to read the data and then pass in the output into a JSON object.  This transaction function will take the Hyperledger Fabric context and one argument, `commKey`, which identifies which commodity to process the transaction against.
+We will add a `checkQuantity` function to query or read from the network.  We will use the `getState()` method from the smart contract context to read the data and then pass in the output into a JSON object.  This transaction function will take the Hyperledger Fabric context and one argument, `commKey`, which identifies which commodity to process the transaction against.
 
                     `let commodityBytes = await ctx.stub.getState(commKey);`
 
@@ -146,7 +146,7 @@ Voila' You have completed writing the smart contract.
 
 ## 5. Package the smart contract
 
-Now that your smart contract is written - we need to add it into VSCode using the IBM Blockchain Platform VSCode Extension
+Now that your smart contract is written - we need to install it and instantiate it on the network using the IBM Blockchain Platform VSCode Extension
 
 * If you didn't create the code inside of VSCode - you will need to add the `contract` folder into the tool.  You will see this:
   
@@ -214,15 +214,13 @@ After the install is complete, you should get a message `Successfully installed 
 
 ### Instantiate
 
-* And then instantiate it on the channel by clicking on `+ Instantiate` and choose `mychannel`.  Select `auction@0.0.1 Installed`.
-
 * Under **Smart Contracts** you will see a section that says **Instantiated**. Click on `+ Instantiate`.
-
-* The extension will then ask you which channel to instantiate the smart contract on – choose `mychannel`.
 
 * The extension will then ask you which contract and version to instantiate — choose `auction@0.0.1`.
 
 * The extension will then ask you which function to call — type in `instantiate`
+
+* The extension will then ask you do you want to use a provide a private data collect configuration file? - Click on `no`.
 
 * Next, it will ask you for the arguments. There are none, so just hit enter.
 
@@ -245,13 +243,13 @@ Notice that all of the transactions that you created in the `auction.js` file ar
 
 At this point, you will have created the 2 instances of commodities and 2 instances of traders.
 
-Now let's submit the `checkQuantity` transaction.  Similarly, righ-hand click on the the `checkQuantity` tansaction. This time you do have to enter an option. Enter `GOLD` as a parameter. You should see the following response in your output window:
+Now let's submit the `checkQuantity` transaction.  Similarly, right-hand click on the the `checkQuantity` transaction. This time you do have to enter an option. It has to be in a `["key", "value"` format.  Enter `"commodity", "GOLD"` as a parameter. You should see the following response in your output window:
 
 <p align="center">
   <img src="doc-images/output-quantity-transaction.png">
 </p>
 
-Now let's submit the `trade` transaction.  Enter `GOLD`, `RT2` as parameters. You should see the following response in your output window:
+Now let's submit the `trade` transaction.  Enter `"GOLD", "RT2"` as parameters. You should see the following response in your output window:
 
 <p align="center">
   <img src="doc-images/trade-output.png">
@@ -260,7 +258,7 @@ Now let's submit the `trade` transaction.  Enter `GOLD`, `RT2` as parameters. Yo
 ## Extending the code pattern
 You learned how to create, package, install, instantiate and invoke a smart contract using the VSCode Platform that supports IBM Blockchain Platform. If you want to extend this pattern:
 
-* You can leverage a network instantiated using the [IBM Blockchain Platform V2.0 Service](https://console.bluemix.net/catalog/services/blockchain)along with [IBM Cloud Kubernetes Service](https://www.ibm.com/cloud/container-service) on [IBM Cloud](https://www.ibm.com/cloud
+* You can leverage a network instantiated using the [IBM Blockchain Platform V2.0 Service](https://console.bluemix.net/catalog/services/blockchain) along with [IBM Cloud Kubernetes Service](https://www.ibm.com/cloud/container-service) on [IBM Cloud](https://www.ibm.com/cloud
 ). 
 
 * You can write a standalone application that executes the transactions. You can learn more about these extensions in the third pattern of this series. [Emit events from Blockchain Platform 2.0](https://developer.ibm.com/patterns/implementing-blockchain-events-using-ibp-vscode-extension/)
