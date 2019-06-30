@@ -199,7 +199,7 @@ Now that the Fabric network is running, we need to install our smart contract on
 
 ### Install
 
-* In the `Local Fabric Ops` section near the bottom, click on `Install`.  You will see a pop-up similar to the graphic below.  Select `peer0.org1.example.com` 
+* In the `Local Fabric Ops` section near the bottom, click on `Install`.  You will see a pop-up similar to the graphic below. 
 
 <p align="center">
   <img src="doc-images/InstallOnPeer.png">
@@ -220,9 +220,9 @@ After the install is complete, you should get a message `Successfully installed 
 
 * The extension will then ask you which function to call — type in `instantiate`
 
-* The extension will then ask you do you want to use a provide a private data collect configuration file? - Click on `no`.
-
 * Next, it will ask you for the arguments. There are none, so just hit enter.
+
+* Lastly, the extension will then ask you do you want to use a provide a private data collect configuration file? - Click on `no`.
 
 <p align="center">
   <img src="doc-images/instantiate.png">
@@ -233,7 +233,7 @@ You should get the message `Successfully instantiated smart contract` and see `a
 
 ## 8. Test the transactions
 
-You can test out the transactions right in the VSCode platform.  If you click on `Admin@org1.example.com`, then click on `mychannel`, then click on `auction@0.0.1`  - expand it to show the following:
+You can test out the transactions right in the VSCode platform.  Under the `Fabric Gateways` section, click on `local_fabric`, then click on `mychannel`, then click on `auction@0.0.1`  - expand it to show the following:
 
 <p align="center">
   <img src="doc-images/transactions.png">
@@ -243,7 +243,7 @@ Notice that all of the transactions that you created in the `auction.js` file ar
 
 At this point, you will have created the 2 instances of commodities and 2 instances of traders.
 
-Now let's submit the `checkQuantity` transaction.  Similarly, right-hand click on the the `checkQuantity` transaction. This time you do have to enter an option. It has to be in a `["key", "value"` format.  Enter `"commodity", "GOLD"` as a parameter. You should see the following response in your output window:
+Now let's submit the `checkQuantity` transaction.  Similarly, right-hand click on the the `checkQuantity` transaction. This time you do have to enter an option. It has to be in a `["key", "value"]` format.  Enter `"commodity", "GOLD"` as a parameter. You should see the following response in your output window:
 
 <p align="center">
   <img src="doc-images/output-quantity-transaction.png">
