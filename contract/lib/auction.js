@@ -6,12 +6,6 @@
 
 const { Contract } = require('fabric-contract-api');
 
-// predefined listing states
-const ListingState = {
-    ForSale: {code: 1, text: 'FOR_SALE'},
-    ReserveNotMet: {code: 2, text: 'RESERVE_NOT_MET'},
-    Sold: {code: 3, text: 'SOLD'},  
-};
 
 class Auction extends Contract {
 
