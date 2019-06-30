@@ -224,10 +224,6 @@ After the install is complete, you should get a message `Successfully installed 
 
 * Lastly, the extension will then ask you do you want to use a provide a private data collect configuration file? - Click on `no`.
 
-<p align="center">
-  <img src="doc-images/instantiate.png">
-</p>
-
 
 You should get the message `Successfully instantiated smart contract` and see `auction@0.0.1` under `Instantiated` under `Local Fabric Ops`.
 
