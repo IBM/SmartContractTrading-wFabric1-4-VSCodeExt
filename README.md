@@ -239,7 +239,7 @@ Notice that all of the transactions that you created in the `auction.js` file ar
 
 At this point, you will have created the 2 instances of commodities and 2 instances of traders.
 
-Now let's submit the `checkQuantity` transaction.  Similarly, right-hand click on the the `checkQuantity` transaction. This time you do have to enter an option. It has to be in a `["key", "value"]` format.  Enter `"commodity", "GOLD"` as a parameter. You should see the following response in your output window:
+Now let's submit the `checkQuantity` transaction.  Similarly, right-hand click on the the `checkQuantity` transaction. This time you do have to enter an option. It has to be in a `["key", "value"]` format.  Enter `"GOLD"` as a parameter. You should see the following response in your output window:
 
 <p align="center">
   <img src="doc-images/output-quantity-transaction.png">
