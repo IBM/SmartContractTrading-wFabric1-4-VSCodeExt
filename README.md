@@ -6,7 +6,7 @@
 
 >SmartContract Trading using IBM Blockchain Platform Extension for VSCode (supports Fabric 1.4)
 
-Welcome to Part 2 of building a Blockchain application using the IBM Blockchain Platform. This is a continuation of [Create a Blockchain Network on IBP V2.0](https://github.com/IBM/Create-BlockchainNetwork-IBPV20).  You should be already familiar with setting up a network in VSCode or IBP from the previous pattern in this series. This pattern focuses on how you create a smart contract. The Smart Contract is at the heart of a blockchain network. It enables a participant to change the state of an asset. In this use case, the assets are `Commodities` and `Traders` and the participant is able to execute the following transactions or smart contracts: `Trade` or `CheckQuantity`. IBM Blockchain Platform Extension for VSCode makes it very easy to create and test out smart contracts.  Let's give it a try.
+Welcome to Part 2 of building a Blockchain application using the IBM Blockchain Platform. This is a continuation of [Create a Blockchain Network on IBP V2.0](https://github.com/IBM/Create-BlockchainNetwork-IBPV20).  You should be already familiar with setting up a network in VSCode or IBM Blockchain Platform from the previous pattern in this series. This pattern focuses on how you create a smart contract. The Smart Contract is at the heart of a blockchain network. It enables a participant to change the state of an asset. In this use case, the assets are `Commodities` and `Traders` and the participant is able to execute the following transactions or smart contracts: `Trade` or `CheckQuantity`. IBM Blockchain Platform Extension for VSCode makes it very easy to create and test out smart contracts.  Let's give it a try.
 
 
 When you have completed this code pattern, you will understand how to use the IBM Blockchain Platform Extension for VSCode to:
@@ -255,9 +255,9 @@ Now let's submit the `trade` transaction.  Provide `["GOLD", "RT2"]` as the list
 ## Extending the code pattern
 You learned how to create, package, install, instantiate and invoke a smart contract using the VSCode Platform that supports IBM Blockchain Platform. If you want to extend this pattern:
 
-* You can leverage a network instantiated using the [IBM Blockchain Platform V2.0 Service](https://console.bluemix.net/catalog/services/blockchain) along with [IBM Cloud Kubernetes Service](https://www.ibm.com/cloud/container-service) on [IBM Cloud](https://www.ibm.com/cloud). 
+* You can leverage a network instantiated using the [IBM Blockchain Platform Service](https://www.ibm.com/cloud/blockchain-platform) along with [IBM Cloud Kubernetes Service](https://www.ibm.com/cloud/container-service) on [IBM Cloud](https://www.ibm.com/cloud). 
 
-* You can write a standalone application that executes the transactions. You can learn more about these extensions in the third pattern of this series. [Emit events from Blockchain Platform 2.0](https://developer.ibm.com/patterns/implementing-blockchain-events-using-ibp-vscode-extension/)
+* You can write a standalone application that executes the transactions. You can learn more about these extensions in the third pattern of this series. [Emit events from Blockchain Platform](https://developer.ibm.com/patterns/implementing-blockchain-events-using-ibp-vscode-extension/)
 
 * Create a wallet for every member and use the member's wallet to interact with the application.
 
