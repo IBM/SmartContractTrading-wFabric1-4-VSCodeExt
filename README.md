@@ -122,7 +122,7 @@ The next function `CreateAssetsandMembers` which will actually write data to the
 In this function, we are creating 2 instances of the Commodity asset (Gold & WonderDrug) and 2 instances of a Trader participant (SI1 and RT2). 
 Note the example of creating an asset:
 
-          					`var commKey = 'GOLD';
+                     `var commKey = 'GOLD';
                      var commodity = { 
                        docType: 'commodity', 
                        description: 'Yellow Bars',
