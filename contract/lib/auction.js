@@ -16,43 +16,43 @@ class Auction extends Contract {
     async CreateAssetsandMembers(ctx) {
 
         console.info('Create 1. Commodities 2. Traders');
-        var commKey = 'GOLD';
-        var commodity = { 
-              docType: 'commodity', 
-              description: 'Yellow Bars',
-              mainExchange: 'London',
-              quantity: 100,
-              owner: 'SI1'
+        let commKey = 'GOLD';
+        let commodity = {
+            docType: 'commodity',
+            description: 'Yellow Bars',
+            mainExchange: 'London',
+            quantity: 100,
+            owner: 'SI1'
         };
 
         await ctx.stub.putState(commKey, JSON.stringify(commodity));
 
         commKey = 'WONDERDRUG';
-        commodity = { 
-              docType: 'commodity', 
-              description: 'Wonder Drug',
-              mainExchange: 'Geneva',
-              quantity: 300,
-              owner: 'RT2'
+        commodity = {
+            docType: 'commodity',
+            description: 'Wonder Drug',
+            mainExchange: 'Geneva',
+            quantity: 300,
+            owner: 'RT2'
         };
 
         await ctx.stub.putState(commKey, JSON.stringify(commodity));
 
-        var traderKey = 'SI1';
-        var trader = { 
-              docType: 'trader', 
-              firstName: 'Solid',
-              lastName: 'Investor'
+        let traderKey = 'SI1';
+        let trader = {
+            docType: 'trader',
+            firstName: 'Solid',
+            lastName: 'Investor'
         };
 
         await ctx.stub.putState(traderKey, JSON.stringify(trader));
 
 
         traderKey = 'RT2';
-        trader = { 
-              docType: 'trader', 
-              firstName: 'Risky',
-              lastName: 'Trader'
+        trader = {
+            docType: 'trader',
+            firstName: 'Risky',
+            lastName: 'Trader'
         };
 
         await ctx.stub.putState(traderKey, JSON.stringify(trader));
@@ -68,7 +68,7 @@ class Auction extends Contract {
 
         let commodityBytes = await ctx.stub.getState(commKey);
 
-        var commodity = JSON.parse(commodityBytes);
+        let commodity = JSON.parse(commodityBytes);
         console.info('Commodity Checked Quantity: ', commodity.quantity);
 
         return 'Checked Quantity:' + commodity.quantity;
@@ -80,7 +80,7 @@ class Auction extends Contract {
 
         let commodityBytes = await ctx.stub.getState(commKey);
         if (commodityBytes.length > 0) {
-            var commodity = JSON.parse(commodityBytes);
+            let commodity = JSON.parse(commodityBytes);
             console.info('Commodity Existing Owner: ', commodity.owner);
             commodity.owner = newOwner;
             console.info('Commodity New Owner: ', commodity.owner);
