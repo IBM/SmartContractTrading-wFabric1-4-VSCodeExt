@@ -37,10 +37,11 @@ When you have completed this code pattern, you will understand how to use the IB
 
 
 ### Prerequisites
-- [Node v8.x or greater and npm v5.x or greater](https://nodejs.org/en/download/)
-- [VSCode version 1.26 or greater](https://code.visualstudio.com)
+- [Node v8.x or v10.x and npm v6.x or greater](https://nodejs.org/en/download/)
+- [VSCode version 1.38.0 or greater](https://code.visualstudio.com)
 - [IBM Blockchain Platform Extension for VSCode](https://marketplace.visualstudio.com/items?itemName=IBMBlockchain.ibm-blockchain-platform)
-- [Yeoman](https://yeoman.io/)
+- [Docker version v17.06.2-ce or greater](https://www.docker.com/get-docker)
+- [Docker Compose v1.14.0 or greater](https://docs.docker.com/compose/install/)
 
 # Running the application
 
@@ -83,7 +84,6 @@ You can check your installed versions by running the following commands from a t
 
 * node --version
 * npm --version
-* yo --version
 * docker --version
 * docker-compose --version
 
